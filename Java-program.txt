@@ -1,0 +1,133 @@
+Sort sentences to list of words
+
+package puzzle;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class GetWordCount {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String str = "hello How are You. HOW is your work going on";
+		
+		
+		HashMap<String,Integer> hm = getMap(str);
+		
+		List list  = sortMap(hm);
+		
+		/*
+		for(Map.Entry<String, Integer> entry : hm.entrySet())
+		{
+				System.out.print("key="+entry.getKey());
+				System.out.print("  value="+entry.getValue());
+				System.out.println();
+		}
+		*/
+		for(int i=0; i< list.size();i++)
+		{
+			System.out.println(list.get(i));
+		}
+	}
+
+	public static List sortMap(HashMap hm)
+	{
+		
+		Set<Map.Entry<String,Integer>> set = hm.entrySet();
+		ArrayList<Map.Entry<String,Integer>> ar = new ArrayList<>(set);
+		
+		Collections.sort(ar, new Comparator<Map.Entry<String,Integer>>() {
+
+			@Override
+			public int compare(Entry<String, Integer> o1,
+					Entry<String, Integer> o2) {
+
+						return o2.getValue()-o1.getValue();				
+			}
+		});
+		
+		return ar;
+		
+	}
+	public static HashMap getMap(String str) 
+	{
+		
+		String strs[] = str.split(" ");
+		
+		HashMap<String,Integer> hm = new HashMap<>();
+		String temp="";
+		
+		for(int i=0; i<strs.length;i++)
+		{
+			temp = strs[i].toLowerCase();
+			if(hm.containsKey(temp))
+			{
+				hm.put(temp,(hm.get(temp)+1) );
+				
+			}else {
+				
+				hm.put(temp,1);
+			}
+		}
+		return hm;
+	}
+}
+========================================================
+Reverse a string
+
+String str = "hello world";
+			
+			char chars[] = str.toCharArray();
+			char temp;
+			
+			int start=0;
+			int end = str.length()-1;
+			
+			for(start=0;start<end;start++,end--)
+			{
+				temp = chars[start];
+				chars[start] = chars[end];
+				chars[end] = temp;
+								
+			}
+			str = String.valueOf(chars);
+			System.out.println("Strng is="+str);
+  =====================    
+  Recursive : Factorial
+  
+  public class FactorialTest {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+			int n = 0;
+			int ans = getFactorial(n);
+			System.out.println("answer is: "+ans);
+			
+	}
+	
+	public static int getFactorial(int n) {
+		
+		if(n==1) {
+			return 1;
+		}
+		return n * getFactorial(n-1);
+		
+	}
+
+}
+  
+      
